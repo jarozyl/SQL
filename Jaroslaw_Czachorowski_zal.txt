@@ -1,0 +1,40 @@
+
+select contactFirstName,contactLastName,count(*)ilosc
+from customers c join payments p on c.customerNumber=p.customerNumber
+group by contactFirstName;
+
+select productName,sum(quantityOrdered*priceEach)ilosc,year(orderDate)rok
+from orderdetails o join products p on o.productCode = p.productCode
+					join orders oo on o.orderNumber = oo.orderNumber
+                    where productName = '1968 Ford Mustang' OR productName='1952 Alpine Renault 1300'
+                    OR productName= '1996 Moto Guzzi 1100i'
+                    
+group by productName,rok;
+
+select 
+    productName, sum(quantityOrdered*priceEach)suma, YEAR(orderdate) rok,month(orderDate)miesiac
+FROM
+    products p
+        JOIN
+    orderdetails o ON p.productCode = o.productCode
+        JOIN
+    orders oo ON oo.orderNumber = o.orderNumber
+WHERE
+    productname  LIKE "%harley%"
+GROUP BY productName , rok,miesiac;
+
+
+select p.productLine,count(*)ilosc_produktów
+from  productlines p  join products pp on p.productLine = pp.productLine
+group by productLine
+having count(productCode) between 10 AND 20;
+
+
+
+
+
+
+
+
+
+https://github.com/jarozyl/SQL.git
